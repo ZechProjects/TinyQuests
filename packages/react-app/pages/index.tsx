@@ -68,6 +68,10 @@ export default function Home() {
     router.push("/car");
   };
 
+  const handlePhoneClick = () => {
+    router.push("/phone");
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
       {!address && (
@@ -97,6 +101,42 @@ export default function Home() {
             <PrimaryButton
               onClick={handleCarClick}
               title="Save for Car"
+              widthFull
+              stars={5}
+            />
+          </div>
+
+          <div className="w-full px-3 mt-7">
+            <PrimaryButton
+              onClick={handleCarClick}
+              title="Save for Education"
+              widthFull
+              stars={4}
+            />
+          </div>
+
+          <div className="w-full px-3 mt-7">
+            <PrimaryButton
+              onClick={handleCarClick}
+              title="Save for Travel"
+              widthFull
+              stars={2}
+            />
+          </div>
+
+          <div className="w-full px-3 mt-7">
+            <PrimaryButton
+              onClick={handlePhoneClick}
+              title="Save for Phone"
+              widthFull
+              stars={1}
+            />
+          </div>
+
+          <div className="w-full px-3 mt-7">
+            <PrimaryButton
+              onClick={handleCarClick}
+              title="Custom Saving Goal"
               widthFull
             />
           </div>

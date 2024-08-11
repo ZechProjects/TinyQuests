@@ -3,6 +3,7 @@ import PrimaryButton from "@/components/Button";
 import { useWeb3 } from "@/contexts/useWeb3";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import ProgressBar from "@/components/ProgressBar"; // Make sure the path is correct
 
 export default function Car() {
   const {
@@ -62,6 +63,21 @@ export default function Car() {
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Add drop shadow
   };
 
+  const title2Text = {
+    fontSize: "1.5em",
+    fontWeight: "bolder",
+  };
+
+  const subContainerStyle = {
+    color: "black",
+    backgroundColor: "lightgray",
+    padding: "20px",
+    borderRadius: "5px",
+    borderColor: "black",
+    borderWidth: "0px",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Add drop shadow
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
       <>
@@ -85,6 +101,10 @@ export default function Car() {
           </span>
           <br />
           <span>
+            <b>Goal:</b> cUSD5,000
+          </span>
+          <br />
+          <span>
             <a href="#">Terms</a>
           </span>
         </div>
@@ -93,9 +113,26 @@ export default function Car() {
           <PrimaryButton
             loading={signingLoading}
             onClick={sendingCUSD}
-            title="Start Quest"
+            title="Start New Quest"
             widthFull
           />
+        </div>
+
+        <br />
+
+        <h2 style={title2Text}>Active Quest(s)</h2>
+
+        <div style={subContainerStyle}>
+          <ProgressBar currentValue={1000} maxValue={5000} />
+
+          <div className="w-full px-3 mt-7">
+            <PrimaryButton
+              loading={signingLoading}
+              onClick={sendingCUSD}
+              title="Deposit 10 cUSD"
+              widthFull
+            />
+          </div>
         </div>
       </>
     </div>

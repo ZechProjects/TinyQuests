@@ -5,6 +5,7 @@ type Props = {
   disabled?: boolean;
   loading?: boolean;
   className?: string;
+  stars?: number;
 };
 
 function PrimaryButton({
@@ -14,7 +15,18 @@ function PrimaryButton({
   disabled,
   loading,
   className = "",
+  stars = 0,
 }: Props) {
+  const renderStars = () => {
+    const starsArray = [];
+    for (let i = 0; i < stars; i++) {
+      starsArray.push(
+        <img key={i} src="star-icon.svg" width="20" alt="star" />
+      );
+    }
+    return starsArray;
+  };
+
   return (
     <button
       onClick={onClick}
@@ -24,6 +36,7 @@ function PrimaryButton({
       } ${className} font-bold bg-colors-secondary rounded-2xl text-white py-3 flex justify-center items-center`}
     >
       {loading ? <>Loading...</> : title}
+      <span className="flex ml-2">{renderStars()}</span>
     </button>
   );
 }
