@@ -3,6 +3,7 @@ import PrimaryButton from "@/components/Button";
 import { useWeb3 } from "@/contexts/useWeb3";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const {
@@ -47,17 +48,6 @@ export default function Home() {
     }
   }
 
-  async function signMessage() {
-    setCUSDLoading(true);
-    try {
-      await signTransaction();
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setCUSDLoading(false);
-    }
-  }
-
   async function mintNFT() {
     setNFTLoading(true);
     try {
@@ -71,6 +61,12 @@ export default function Home() {
       setNFTLoading(false);
     }
   }
+
+  const router = useRouter();
+
+  const handleCarClick = () => {
+    router.push("/car");
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -96,20 +92,20 @@ export default function Home() {
               )}
             </p>
           )}
+
+          <div className="w-full px-3 mt-7">
+            <PrimaryButton
+              onClick={handleCarClick}
+              title="Save for Car"
+              widthFull
+            />
+          </div>
+
           <div className="w-full px-3 mt-7">
             <PrimaryButton
               loading={signingLoading}
               onClick={sendingCUSD}
               title="Send 0.1 cUSD to your own address"
-              widthFull
-            />
-          </div>
-
-          <div className="w-full px-3 mt-6">
-            <PrimaryButton
-              loading={cUSDLoading}
-              onClick={signMessage}
-              title="Sign a Message"
               widthFull
             />
           </div>
