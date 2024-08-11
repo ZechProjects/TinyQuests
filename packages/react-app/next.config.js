@@ -3,7 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["pbs.twimg.com", "cdn-production-opera-website.operacdn.com"],
+    domains: [
+      "pbs.twimg.com",
+      "cdn-production-opera-website.operacdn.com",
+      "minipay.tinyquests.com",
+    ],
   },
   webpack: (config) => {
     config.resolve.fallback = {

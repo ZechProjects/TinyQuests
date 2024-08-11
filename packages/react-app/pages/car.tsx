@@ -15,7 +15,7 @@ export default function Car() {
     signTransaction,
   } = useWeb3();
   const [cUSDLoading, setCUSDLoading] = useState(false);
-  const [nftLoading, setNFTLoading] = useState(false);
+  const [newQuestLoading, setNewQuestLoading] = useState(false);
   const [signingLoading, setSigningLoading] = useState(false);
   const [userOwnedNFTs, setUserOwnedNFTs] = useState<string[]>([]);
   const [tx, setTx] = useState<any>(undefined);
@@ -33,6 +33,20 @@ export default function Car() {
       getData();
     }
   }, [address]);
+
+  async function startNewQuest() {
+    if (address) {
+      setNewQuestLoading(true);
+      try {
+        const tx = await sendCUSD(address, "0.1");
+        setTx(tx);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setNewQuestLoading(false);
+      }
+    }
+  }
 
   async function sendingCUSD() {
     if (address) {
@@ -111,8 +125,8 @@ export default function Car() {
 
         <div className="w-full px-3 mt-7">
           <PrimaryButton
-            loading={signingLoading}
-            onClick={sendingCUSD}
+            loading={newQuestLoading}
+            onClick={startNewQuest}
             title="Start New Quest"
             widthFull
           />
