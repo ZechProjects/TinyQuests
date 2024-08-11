@@ -41,8 +41,9 @@ export default function Header() {
                     src="/logo.svg"
                     width="24"
                     height="24"
-                    alt="Celo Logo"
+                    alt="Logo"
                   />
+                  Tiny Quests
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <a
