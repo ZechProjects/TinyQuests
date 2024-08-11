@@ -72,6 +72,10 @@ export default function Home() {
     router.push("/phone");
   };
 
+  const handleComingSoonClick = () => {
+    router.push("/comingsoon");
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
       {!address && (
@@ -108,7 +112,7 @@ export default function Home() {
 
           <div className="w-full px-3 mt-7">
             <PrimaryButton
-              onClick={handleCarClick}
+              onClick={handleComingSoonClick}
               title="Save for Education"
               widthFull
               stars={4}
@@ -117,7 +121,7 @@ export default function Home() {
 
           <div className="w-full px-3 mt-7">
             <PrimaryButton
-              onClick={handleCarClick}
+              onClick={handleComingSoonClick}
               title="Save for Travel"
               widthFull
               stars={2}
@@ -135,7 +139,7 @@ export default function Home() {
 
           <div className="w-full px-3 mt-7">
             <PrimaryButton
-              onClick={handleCarClick}
+              onClick={handleComingSoonClick}
               title="Custom Saving Goal"
               widthFull
             />
