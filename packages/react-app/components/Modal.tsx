@@ -1,6 +1,14 @@
 import React from "react";
 
-function Modal({ show, onClose, title, children }) {
+// Define the interface for the props
+interface ModalProps {
+  show: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+}
+
+const Modal: React.FC<ModalProps> = ({ show, onClose, title, children }) => {
   if (!show) {
     return null;
   }
@@ -19,6 +27,6 @@ function Modal({ show, onClose, title, children }) {
       </div>
     </div>
   );
-}
+};
 
 export default Modal;

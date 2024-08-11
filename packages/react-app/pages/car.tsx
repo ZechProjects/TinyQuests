@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import ProgressBar from "@/components/ProgressBar";
 import ConfettiController from "@/components/ConfettiController";
+import Modal from "@/components/Modal"; // Ensure the correct path
 
 interface ConfettiControllerRef {
   startConfetti: () => void;
@@ -24,6 +25,16 @@ export default function Car() {
   const [signingLoading, setSigningLoading] = useState(false);
   const [userOwnedNFTs, setUserOwnedNFTs] = useState<string[]>([]);
   const [tx, setTx] = useState<any>(undefined);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     getUserAddress();
@@ -59,8 +70,9 @@ export default function Car() {
     if (address) {
       if (confettiRef.current) {
         confettiRef.current.startConfetti();
+        handleOpenModal();
       }
-      setSigningLoading(true);
+      //setSigningLoading(true);
       try {
         const tx = await sendCUSD(address, "0.1");
         setTx(tx);
@@ -158,6 +170,14 @@ export default function Car() {
             />
           </div>
         </div>
+
+        <Modal
+          show={isModalOpen}
+          onClose={handleCloseModal}
+          title="Message Modal"
+        >
+          <p>You have won a prize!</p>
+        </Modal>
 
         <ConfettiController ref={confettiRef} />
       </>
