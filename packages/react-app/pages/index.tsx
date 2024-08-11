@@ -149,14 +149,14 @@ export default function Home() {
             <PrimaryButton
               loading={signingLoading}
               onClick={sendingCUSD}
-              title="Send 0.1 cUSD to your own address"
+              title="[Test] Send 0.1 cUSD to your own address"
               widthFull
             />
           </div>
 
           {userOwnedNFTs.length > 0 ? (
             <div className="flex flex-col items-center justify-center w-full mt-7">
-              <p className="font-bold">My NFTs</p>
+              <p className="font-bold">NFT Achievements</p>
               <div className="w-full grid grid-cols-2 gap-3 mt-3 px-2">
                 {userOwnedNFTs.map((tokenURI, index) => (
                   <div
