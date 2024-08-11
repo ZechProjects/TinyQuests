@@ -2,8 +2,13 @@
 import PrimaryButton from "@/components/Button";
 import { useWeb3 } from "@/contexts/useWeb3";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import ProgressBar from "@/components/ProgressBar"; // Make sure the path is correct
+import { useEffect, useState, useRef } from "react";
+import ProgressBar from "@/components/ProgressBar";
+import ConfettiController from "@/components/ConfettiController";
+
+interface ConfettiControllerRef {
+  startConfetti: () => void;
+}
 
 export default function Car() {
   const {
@@ -48,8 +53,13 @@ export default function Car() {
     }
   }
 
+  const confettiRef = useRef<ConfettiControllerRef>(null);
+
   async function sendingCUSD() {
     if (address) {
+      if (confettiRef.current) {
+        confettiRef.current.startConfetti();
+      }
       setSigningLoading(true);
       try {
         const tx = await sendCUSD(address, "0.1");
@@ -148,6 +158,8 @@ export default function Car() {
             />
           </div>
         </div>
+
+        <ConfettiController ref={confettiRef} />
       </>
     </div>
   );
